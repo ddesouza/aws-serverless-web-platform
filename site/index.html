@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAV1TECHNOLOGIES</title>
+    <script src="config.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080a0e;
+            --bg2: #0d1017;
+            --surface: #111520;
+            --surface2: #161c2c;
+            --accent: #00d4ff;
+            --accent2: #ff4d1c;
+            --text: #e8eaf0;
+            --muted: #6b7280;
+            --border: rgba(0, 212, 255, 0.15);
+            --font-display: 'Syne', sans-serif;
+            --font-mono: 'Share Tech Mono', monospace;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 4rem;
+            background: rgba(8, 10, 14, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1.2rem;
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* HERO */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 10rem 4rem 6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-tag::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 7vw, 6.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 2.5rem;
+            line-height: 1.15;
+            text-transform: uppercase;
+        }
+
+        h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 620px;
+            line-height: 1.9;
+            margin-bottom: 3.5rem;
+            font-weight: 300;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--bg);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #00b8d9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 1rem 2rem;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            gap: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 8rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent2);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-tag::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--accent2);
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 1.75rem;
+            letter-spacing: -0.02em;
+
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 620px;
+            line-height: 1.9;
+            margin-bottom: 5rem;
+            font-weight: 300;
+        }
+
+        /* SERVICES */
+        #services {
+            background: var(--bg2);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5px;
+            background: var(--border);
+        }
+
+        .service-card {
+            background: var(--bg2);
+            padding: 3rem;
+            transition: background 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.3s;
+        }
+
+        .service-card:hover {
+            background: var(--surface);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-num {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.75rem;
+            display: block;
+        }
+
+        h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--accent);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* EXPERTISE */
+        #expertise {
+            background: var(--bg);
+        }
+
+        .expertise-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: start;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skill-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-row:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .skill-name {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text);
+            letter-spacing: 0.05em;
+        }
+
+        .skill-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--accent);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* INDUSTRIES */
+        #work {
+            background: var(--bg2);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .work-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .work-card:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+
+        .work-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .work-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+
+        .work-body {
+            font-size: 0.875rem;
+            color: var(--muted);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .work-num {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 2rem;
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 1;
+        }
+
+        /* CONTACT */
+        #contact {
+            background: var(--bg);
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        input,
+        textarea,
+        select {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            padding: 0.85rem 1rem;
+            outline: none;
+            width: 100%;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        select option {
+            background: var(--surface2);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 2rem 4rem;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-logo span {
+            color: var(--accent2);
+        }
+
+        .footer-copy {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            animation: fadeUp 0.6s ease both;
+            animation-delay: 0.1s;
+        }
+
+        .hero-inner h1 {
+            animation: fadeUp 0.6s ease both;
+            animation-delay: 0.2s;
+        }
+
+        .hero-sub {
+            animation: fadeUp 0.6s ease both;
+            animation-delay: 0.35s;
+        }
+
+        .hero-actions {
+            animation: fadeUp 0.6s ease both;
+            animation-delay: 0.5s;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            nav {
+                padding: 1.25rem 2rem;
+            }
+
+            section {
+                padding: 6rem 2rem;
+            }
+
+            #hero {
+                padding: 8rem 2rem 5rem;
+            }
+
+            .stats-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                padding: 2.5rem 2rem;
+            }
+
+            .expertise-layout {
+                gap: 4rem;
+            }
+
+            .contact-layout {
+                gap: 4rem;
+            }
+
+            footer {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .stats-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-num {
+                font-size: 1.5rem;
+            }
+
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .expertise-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#" class="logo" id="nav-logo"></a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#work">Industries</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Contact Us</a>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-inner">
+            <div class="hero-tag" id="hero-tag"></div>
+            <h1 id="hero-headline"></h1>
+            <p class="hero-sub" id="hero-sub"></p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary">Work With Us</a>
+                <a href="#services" class="btn-secondary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stats-inner" id="stats-inner"></div>
+    </div>
+
+    <section id="services">
+        <div class="section-inner">
+            <div class="section-tag">What We Do</div>
+            <h2>End-to-end consulting<br>for complex systems.</h2>
+            <p class="section-desc" id="services-desc"></p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-num">01</span>
+                    <h3>Cloud Architecture & Infrastructure</h3>
+                    <p class="service-desc">Design and implement scalable AWS architectures — from serverless
+                        microservices to multi-environment IaC pipelines. We build systems that grow with you.</p>
+                    <div class="service-tags">
+                        <span class="tag">AWS</span><span class="tag">CDK</span><span class="tag">Terraform</span><span
+                            class="tag">Kubernetes</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">02</span>
+                    <h3>Data Engineering & Big Data</h3>
+                    <p class="service-desc">Build distributed data pipelines that process at scale. From Kafka-driven
+                        event streams to Spark-based analytics, we handle data at any volume.</p>
+                    <div class="service-tags">
+                        <span class="tag">Apache Kafka</span><span class="tag">Spark</span><span
+                            class="tag">PostgreSQL</span><span class="tag">DynamoDB</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">03</span>
+                    <h3>Backend & API Development</h3>
+                    <p class="service-desc">Production-grade APIs and backend systems built in Java, Python, Go, or
+                        Node.js. Clean architecture, well-tested, and ready to scale.</p>
+                    <div class="service-tags">
+                        <span class="tag">Java</span><span class="tag">Python</span><span class="tag">Go</span><span
+                            class="tag">Node.js</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">04</span>
+                    <h3>DevOps & CI/CD Pipelines</h3>
+                    <p class="service-desc">Automate your entire software delivery lifecycle. Container orchestration,
+                        GitLab CI/CD, and ArgoCD workflows that keep your team shipping.</p>
+                    <div class="service-tags">
+                        <span class="tag">Docker</span><span class="tag">GitLab CI</span><span
+                            class="tag">ArgoCD</span><span class="tag">Helm</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">05</span>
+                    <h3>Security & Compliance Engineering</h3>
+                    <p class="service-desc">Implement IAM least-privilege models, KMS encryption, VPC isolation, and
+                        secrets management across your infrastructure. Security built in, not bolted on.</p>
+                    <div class="service-tags">
+                        <span class="tag">IAM</span><span class="tag">OAuth2</span><span class="tag">PKI</span><span
+                            class="tag">Keycloak</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <span class="service-num">06</span>
+                    <h3>Technical Leadership & Mentoring</h3>
+                    <p class="service-desc">Fractional CTO and principal engineer services. Architecture reviews, team
+                        mentorship, and engineering standards that elevate your whole organization.</p>
+                    <div class="service-tags">
+                        <span class="tag">Architecture Review</span><span class="tag">Team Mentoring</span><span
+                            class="tag">Best Practices</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise">
+        <div class="section-inner">
+            <div class="expertise-layout">
+                <div>
+                    <div class="section-tag">Our Capabilities</div>
+                    <h2>Deep expertise across the modern stack.</h2>
+                    <p class="section-desc" id="expertise-desc" style="margin-bottom: 0;"></p>
+                </div>
+                <div>
+                    <div class="skill-list">
+                        <div class="skill-row"><span class="skill-name">Cloud & AWS</span><span class="skill-tag">Cloud
+                                Certified</span></div>
+                        <div class="skill-row"><span class="skill-name">Infrastructure as Code</span><span
+                                class="skill-tag">CDK · Terraform</span></div>
+                        <div class="skill-row"><span class="skill-name">Data Engineering</span><span
+                                class="skill-tag">Kafka · Spark</span></div>
+                        <div class="skill-row"><span class="skill-name">Java / Python / Go</span><span
+                                class="skill-tag">Backend</span></div>
+                        <div class="skill-row"><span class="skill-name">Kubernetes & Containers</span><span
+                                class="skill-tag">Docker · Helm</span></div>
+                        <div class="skill-row"><span class="skill-name">Security & Identity</span><span
+                                class="skill-tag">IAM · OAuth2</span></div>
+                        <div class="skill-row"><span class="skill-name">Distributed Systems</span><span
+                                class="skill-tag">Event-Driven</span></div>
+                        <div class="skill-row"><span class="skill-name">CI/CD & DevOps</span><span
+                                class="skill-tag">GitLab · ArgoCD</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work">
+        <div class="section-inner">
+            <div class="section-tag">Industries Served</div>
+            <h2>Proven in the field's<br>most demanding environments.</h2>
+            <p class="section-desc" id="work-desc"></p>
+            <div class="work-grid">
+                <div class="work-card">
+                    <div class="work-label">Defense & Intelligence</div>
+                    <div class="work-title">Mission-Critical Systems</div>
+                    <p class="work-body">Designed and deployed high-availability data processing platforms. Cleared to
+                        work on the most sensitive programs.</p>
+                    <div class="work-num">01</div>
+                </div>
+                <div class="work-card">
+                    <div class="work-label">Cybersecurity</div>
+                    <div class="work-title">Threat Detection & Analytics</div>
+                    <p class="work-body">Built scalable message-passing backends and real-time analytics platforms for
+                        cybersecurity product companies processing billions of events.</p>
+                    <div class="work-num">02</div>
+                </div>
+                <div class="work-card">
+                    <div class="work-label">Enterprise & SaaS</div>
+                    <div class="work-title">Cloud-Native Platforms</div>
+                    <p class="work-body">Architected serverless, event-driven systems on AWS with full IaC coverage
+                        across dev, test, and production environments at enterprise scale.</p>
+                    <div class="work-num">03</div>
+                </div>
+                <div class="work-card">
+                    <div class="work-label">Startups</div>
+                    <div class="work-title">From Zero to Production</div>
+                    <p class="work-body">We help early-stage companies build the right foundation from day one —
+                        scalable architecture, clean APIs, and engineering practices that don't become technical debt.
+                    </p>
+                    <div class="work-num">04</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-inner">
+            <div class="contact-layout">
+                <div>
+                    <div class="section-tag">Get in Touch</div>
+                    <h2>Let's build something exceptional.</h2>
+                    <p class="section-desc" id="contact-desc" style="margin-bottom: 0;"></p>
+                </div>
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Needed</label>
+                        <select id="service">
+                            <option value="">Select a service...</option>
+                            <option>Cloud Architecture & Infrastructure</option>
+                            <option>Data Engineering & Big Data</option>
+                            <option>Backend & API Development</option>
+                            <option>DevOps & CI/CD Pipelines</option>
+                            <option>Security & Compliance Engineering</option>
+                            <option>Technical Leadership & Mentoring</option>
+                            <option>Other / Not Sure Yet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Message us..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary"
+                        style="border:none; cursor:pointer; text-align:center;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo" id="footer-logo"></div>
+        <div class="footer-copy" id="footer-copy"></div>
+    </footer>
+
+    <script>
+        // Populate from CONFIG
+        document.title = CONFIG.businessName;
+
+        // Nav logo: DAV + accent "1" + TECHNOLOGIES
+        document.getElementById('nav-logo').innerHTML =
+            CONFIG.logoPrefix + '<span>' + CONFIG.logoAccent + '</span>' + CONFIG.logoSuffix;
+
+        // Hero
+        document.getElementById('hero-tag').textContent = CONFIG.heroTag;
+        document.getElementById('hero-headline').innerHTML = CONFIG.heroHeadline;
+        document.getElementById('hero-sub').textContent = CONFIG.heroSub;
+
+        // Stats — set grid columns dynamically based on count
+        const statsInner = document.getElementById('stats-inner');
+        statsInner.style.gridTemplateColumns = 'repeat(' + CONFIG.stats.length + ', 1fr)';
+        CONFIG.stats.forEach(s => {
+            const div = document.createElement('div');
+            div.className = 'stat';
+            div.innerHTML = '<span class="stat-num">' + s.num + '</span><span class="stat-label">' + s.label + '</span>';
+            statsInner.appendChild(div);
+        });
+
+        // Section descriptions
+        document.getElementById('services-desc').textContent =
+            'From architecture to deployment, ' + CONFIG.businessName + ' partners with teams who need senior-level engineering expertise on-demand.';
+
+        document.getElementById('expertise-desc').textContent =
+            CONFIG.businessName + ' engineers bring cloud-certified, senior-level expertise across every layer of the stack. Our team has delivered production systems for defense contractors, cybersecurity firms, startups, and enterprise software companies — and we bring that same rigor to every engagement.';
+
+        document.getElementById('work-desc').textContent =
+            'From established enterprises to early-stage startups, ' + CONFIG.businessName + ' has delivered mission-critical systems that can\'t fail.';
+
+        document.getElementById('contact-desc').innerHTML =
+            'Whether you need an embedded senior engineer, a full-project build, or a team to take ownership of a critical workstream — ' + CONFIG.businessName + ' is ready to engage. Reach out at <a href="mailto:' + CONFIG.email + '" style="color:var(--accent);text-decoration:none;">' + CONFIG.email + '</a> or fill out the form and we\'ll be in touch.';
+
+        // Footer
+        document.getElementById('footer-logo').innerHTML =
+            CONFIG.logoPrefix + '<span>' + CONFIG.logoAccent + '</span>' + CONFIG.logoSuffix;
+        document.getElementById('footer-copy').textContent =
+            '\u00A9 ' + CONFIG.year + ' ' + CONFIG.businessName + '. All rights reserved.';
+
+        // Contact form
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(CONFIG.apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        service: document.getElementById('service').value,
+                        message: document.getElementById('message').value,
+                    })
+                });
+
+                if (res.ok) {
+                    btn.textContent = 'Message Sent!';
+                    btn.style.background = '#00a86b';
+                    e.target.reset();
+                    setTimeout(() => {
+                        btn.textContent = 'Send Message';
+                        btn.style.background = '';
+                        btn.disabled = false;
+                    }, 4000);
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                btn.textContent = 'Something went wrong. Try again.';
+                btn.style.background = '#e24b4a';
+                btn.disabled = false;
+            }
+        }
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .work-card, .skill-row').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
