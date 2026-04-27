@@ -3,6 +3,7 @@
 A fully serverless static website deployed on AWS using the Cloud Development Kit (CDK). The stack provisions and connects S3, Lambda, and Route 53 to deliver a fast, scalable, and cost-efficient web presence.
 
 ## Architecture
+![Architecture Diagram](assets/images/aws-static-website-diagram.png)
 
 ```
 User → Route 53 (DNS) → S3 (Static Hosting) → Lambda (Backend Logic)
